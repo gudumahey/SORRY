@@ -7,14 +7,19 @@
 <title>For Babuni ❤️</title>
 
 <meta name="description"
-content="A little apology from the heart — an interactive surprise made especially for Babuni. ❤️">
+content="A little apology from the heart — made especially for Babuni. ❤️">
 
 <meta property="og:title" content="For Babuni ❤️">
 <meta property="og:description"
-content="One little message, straight from the heart. 💌❤️">
+content="A little message from my heart, just for you. 💌">
 <meta property="og:type" content="website">
 
 <style>
+
+/* =========================
+   RESET
+========================= */
+
 *{
     margin:0;
     padding:0;
@@ -32,11 +37,58 @@ body{
     color:white;
 
     background:
-        radial-gradient(circle at 50% 30%,
-        #671b42 0%,
-        #350f29 35%,
-        #150611 70%,
-        #040204 100%);
+        radial-gradient(
+            circle at 50% 35%,
+            #702346 0%,
+            #3a102a 28%,
+            #180713 62%,
+            #050205 100%
+        );
+}
+
+
+/* =========================
+   AMBIENT LIGHT
+========================= */
+
+.ambient{
+    position:fixed;
+    width:450px;
+    height:450px;
+    border-radius:50%;
+
+    left:50%;
+    top:43%;
+
+    transform:translate(-50%,-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,75,145,.20),
+            rgba(255,50,120,.06) 45%,
+            transparent 70%
+        );
+
+    filter:blur(20px);
+
+    animation:
+        ambientPulse 4s ease-in-out infinite;
+
+    pointer-events:none;
+}
+
+@keyframes ambientPulse{
+
+    0%,100%{
+        transform:translate(-50%,-50%) scale(1);
+        opacity:.7;
+    }
+
+    50%{
+        transform:translate(-50%,-50%) scale(1.2);
+        opacity:1;
+    }
 }
 
 
@@ -52,24 +104,29 @@ body{
 
 .star{
     position:absolute;
-    width:3px;
-    height:3px;
-    background:white;
-    border-radius:50%;
-    opacity:.5;
 
-    animation:twinkle 2s infinite alternate;
+    width:2px;
+    height:2px;
+
+    border-radius:50%;
+    background:white;
+
+    opacity:.4;
+
+    animation:
+        twinkle 2s infinite alternate;
 }
 
 @keyframes twinkle{
+
     from{
-        opacity:.15;
+        opacity:.1;
         transform:scale(.5);
     }
 
     to{
         opacity:1;
-        transform:scale(1.4);
+        transform:scale(1.5);
     }
 }
 
@@ -79,20 +136,32 @@ body{
 ========================= */
 
 .floating-heart{
+
     position:fixed;
-    bottom:-40px;
-    color:#ff78aa;
-    opacity:0;
+
+    bottom:-30px;
+
+    color:#ff75a7;
+
     pointer-events:none;
 
+    opacity:0;
+
+    text-shadow:
+        0 0 10px #ff4f91;
+
     animation:
-        floatHeart 7s linear forwards;
+        floatUp 7s linear forwards;
 }
 
-@keyframes floatHeart{
+@keyframes floatUp{
 
     0%{
-        transform:translateY(0) scale(.6);
+        transform:
+            translateY(0)
+            scale(.5)
+            rotate(0deg);
+
         opacity:0;
     }
 
@@ -103,8 +172,8 @@ body{
     100%{
         transform:
             translateY(-110vh)
-            scale(1.3)
-            rotate(20deg);
+            scale(1.2)
+            rotate(25deg);
 
         opacity:0;
     }
@@ -116,162 +185,200 @@ body{
 ========================= */
 
 #main{
+
     position:relative;
-    z-index:2;
+
+    z-index:3;
 
     height:100vh;
     width:100%;
 
     display:flex;
+
     flex-direction:column;
+
     align-items:center;
+
     justify-content:center;
 
     text-align:center;
+
     padding:20px;
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
 }
+
+#main.hide{
+
+    opacity:0;
+
+    transform:
+        scale(1.15);
+
+    pointer-events:none;
+}
+
+
+/* =========================
+   TITLE
+========================= */
 
 .title{
-    font-size:clamp(35px,8vw,62px);
 
-    color:#ffe0ec;
+    font-size:
+        clamp(38px,9vw,70px);
+
+    color:#ffe2ed;
+
+    letter-spacing:1px;
 
     text-shadow:
-        0 0 12px rgba(255,100,160,.8),
-        0 0 40px rgba(255,30,120,.5);
+        0 0 12px rgba(255,120,170,.9),
+        0 0 35px rgba(255,40,120,.65),
+        0 0 70px rgba(255,40,120,.3);
 
-    margin-bottom:10px;
+    animation:
+        titleGlow 3s infinite alternate;
 }
 
+@keyframes titleGlow{
+
+    from{
+        text-shadow:
+            0 0 12px rgba(255,120,170,.6),
+            0 0 35px rgba(255,40,120,.3);
+    }
+
+    to{
+        text-shadow:
+            0 0 20px rgba(255,120,170,1),
+            0 0 55px rgba(255,40,120,.7);
+    }
+}
+
+
 .subtitle{
-    font-family:Arial,sans-serif;
 
-    font-size:15px;
-    color:#dcb7c9;
-
-    line-height:1.6;
+    margin-top:10px;
 
     max-width:480px;
 
-    margin-bottom:35px;
+    font-family:Arial,sans-serif;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    color:#d9b9c9;
 }
 
 
 /* =========================
-   MAGIC PORTAL
+   HEART SCENE
 ========================= */
 
 .scene{
+
     position:relative;
 
-    width:620px;
-    height:300px;
+    width:430px;
+    height:330px;
 
-    max-width:96vw;
+    max-width:95vw;
+
+    margin-top:25px;
 }
 
 
 /* =========================
-   PORTAL RINGS
+   ORBIT RINGS
 ========================= */
 
-.portal{
+.orbit{
+
     position:absolute;
 
-    left:70px;
-    top:35px;
+    left:50%;
+    top:50%;
 
     width:230px;
     height:230px;
 
+    transform:
+        translate(-50%,-50%)
+        rotate(-15deg);
+
     border-radius:50%;
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,120,175,.20),
-            rgba(255,50,130,.08) 45%,
-            transparent 70%
-        );
+    border:
+        1px solid rgba(255,145,190,.45);
 
     box-shadow:
-        0 0 25px rgba(255,70,150,.4),
-        0 0 70px rgba(255,40,130,.25);
+        0 0 20px rgba(255,70,140,.25);
 
-    animation:portalPulse 3s infinite ease-in-out;
+    animation:
+        orbitSpin 8s linear infinite;
 }
 
-@keyframes portalPulse{
+.orbit.two{
 
-    0%,100%{
-        transform:scale(1);
-        box-shadow:
-            0 0 25px rgba(255,70,150,.4),
-            0 0 70px rgba(255,40,130,.25);
-    }
+    width:270px;
+    height:150px;
 
-    50%{
-        transform:scale(1.05);
-        box-shadow:
-            0 0 40px rgba(255,70,150,.7),
-            0 0 100px rgba(255,40,130,.4);
-    }
+    transform:
+        translate(-50%,-50%)
+        rotate(35deg);
+
+    border-color:
+        rgba(255,110,170,.25);
+
+    animation:
+        orbitSpinReverse 11s linear infinite;
 }
 
+.orbit.three{
 
-/* outer rings */
+    width:310px;
+    height:120px;
 
-.portal::before{
-    content:"";
+    transform:
+        translate(-50%,-50%)
+        rotate(-55deg);
 
-    position:absolute;
+    border-color:
+        rgba(255,180,205,.15);
 
-    inset:-15px;
-
-    border-radius:50%;
-
-    border:2px solid rgba(255,150,190,.5);
-
-    border-top-color:#ff73a8;
-    border-right-color:transparent;
-
-    animation:spin 6s linear infinite;
+    animation:
+        orbitSpin 14s linear infinite;
 }
 
-.portal::after{
-    content:"";
+@keyframes orbitSpin{
 
-    position:absolute;
-
-    inset:-28px;
-
-    border-radius:50%;
-
-    border:1px solid rgba(255,120,180,.25);
-
-    border-bottom-color:#ff73a8;
-
-    animation:spinReverse 9s linear infinite;
-}
-
-@keyframes spin{
     to{
-        transform:rotate(360deg);
+        transform:
+            translate(-50%,-50%)
+            rotate(345deg);
     }
 }
 
-@keyframes spinReverse{
+@keyframes orbitSpinReverse{
+
     to{
-        transform:rotate(-360deg);
+        transform:
+            translate(-50%,-50%)
+            rotate(-325deg);
     }
 }
 
 
 /* =========================
-   CENTER HEART
+   MAIN HEART
 ========================= */
 
-.portal-heart{
+.heart{
+
     position:absolute;
 
     left:50%;
@@ -280,21 +387,22 @@ body{
     transform:
         translate(-50%,-50%);
 
-    font-size:105px;
-
-    color:#ff4e91;
+    font-size:145px;
 
     line-height:1;
 
+    color:#ff4c91;
+
     filter:
-        drop-shadow(0 0 12px #ff3b82)
-        drop-shadow(0 0 35px #ff2875);
+        drop-shadow(0 0 10px #ff3c81)
+        drop-shadow(0 0 30px #ff2774)
+        drop-shadow(0 0 70px rgba(255,30,110,.5));
 
     animation:
-        bigHeartbeat 1.3s infinite;
+        heartBeat 1.5s infinite;
 }
 
-@keyframes bigHeartbeat{
+@keyframes heartBeat{
 
     0%,100%{
         transform:
@@ -302,25 +410,25 @@ body{
             scale(1);
     }
 
-    20%{
+    15%{
         transform:
             translate(-50%,-50%)
             scale(1.12);
     }
 
-    40%{
+    30%{
         transform:
             translate(-50%,-50%)
             scale(1);
     }
 
-    55%{
+    45%{
         transform:
             translate(-50%,-50%)
-            scale(1.15);
+            scale(1.16);
     }
 
-    70%{
+    65%{
         transform:
             translate(-50%,-50%)
             scale(1);
@@ -329,149 +437,37 @@ body{
 
 
 /* =========================
-   GLOWING ARROW
+   MAGIC SPARKS
 ========================= */
 
-.arrow{
+.spark{
+
     position:absolute;
 
-    left:210px;
-    top:145px;
-
-    width:350px;
+    width:5px;
     height:5px;
-
-    border-radius:10px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #fff,
-            #ffc4d9,
-            #ff76a9
-        );
-
-    box-shadow:
-        0 0 8px white,
-        0 0 18px #ff6fa5,
-        0 0 35px rgba(255,70,140,.5);
-
-    transform:rotate(0deg);
-
-    z-index:5;
-}
-
-
-/* arrow head */
-
-.arrow::after{
-    content:"";
-
-    position:absolute;
-
-    right:-4px;
-    top:-10px;
-
-    border-left:
-        24px solid #ff8bb5;
-
-    border-top:
-        12px solid transparent;
-
-    border-bottom:
-        12px solid transparent;
-
-    filter:
-        drop-shadow(0 0 6px #ff5e98);
-}
-
-
-/* arrow feather */
-
-.arrow::before{
-    content:"✦";
-
-    position:absolute;
-
-    left:-15px;
-    top:-13px;
-
-    font-size:25px;
-
-    color:#ff8bb4;
-}
-
-
-/* shooting */
-
-.arrow.shoot{
-
-    animation:
-        shootArrow 1.25s
-        cubic-bezier(.2,.8,.2,1)
-        forwards;
-}
-
-@keyframes shootArrow{
-
-    0%{
-        left:500px;
-        opacity:0;
-        transform:scale(.8);
-    }
-
-    10%{
-        opacity:1;
-    }
-
-    100%{
-        left:170px;
-        opacity:0;
-
-        transform:scale(1);
-    }
-}
-
-
-/* =========================
-   PARTICLE BURST
-========================= */
-
-.particle{
-    position:absolute;
-
-    width:6px;
-    height:6px;
 
     border-radius:50%;
 
-    background:#ff8ab7;
+    background:#ffd6e5;
 
-    pointer-events:none;
+    box-shadow:
+        0 0 10px #ff76aa;
 
     animation:
-        particleBurst .8s ease-out forwards;
+        sparkFloat 3s infinite ease-in-out;
 }
 
-@keyframes particleBurst{
+@keyframes sparkFloat{
 
-    0%{
-        transform:
-            translate(0,0)
-            scale(1);
-
-        opacity:1;
+    0%,100%{
+        transform:translateY(0) scale(.6);
+        opacity:.2;
     }
 
-    100%{
-        transform:
-            translate(
-                var(--x),
-                var(--y)
-            )
-            scale(0);
-
-        opacity:0;
+    50%{
+        transform:translateY(-20px) scale(1.3);
+        opacity:1;
     }
 }
 
@@ -480,51 +476,102 @@ body{
    BUTTON
 ========================= */
 
-.shoot-btn{
+.btn{
+
+    position:relative;
 
     padding:
-        15px 34px;
+        15px 35px;
 
     border-radius:50px;
 
     border:
-        1px solid #ff78aa;
+        1px solid rgba(255,130,175,.8);
 
     background:
-        rgba(255,70,140,.10);
+        linear-gradient(
+            135deg,
+            rgba(255,80,145,.20),
+            rgba(255,30,110,.08)
+        );
 
-    color:#ffe5ef;
+    color:#ffe6ef;
 
     font-size:16px;
 
     cursor:pointer;
 
-    backdrop-filter:blur(12px);
+    backdrop-filter:
+        blur(12px);
 
     box-shadow:
-        0 0 22px
-        rgba(255,70,140,.25);
+        0 0 20px rgba(255,60,130,.25);
 
-    transition:.3s ease;
+    transition:
+        .3s ease;
 }
 
-.shoot-btn:hover{
+.btn:hover{
 
     transform:
         translateY(-4px)
-        scale(1.04);
-
-    background:
-        rgba(255,70,140,.25);
+        scale(1.05);
 
     box-shadow:
-        0 0 35px
-        rgba(255,70,140,.55);
+        0 0 40px rgba(255,70,140,.6);
 }
 
-.shoot-btn:disabled{
-    opacity:.6;
-    cursor:default;
+.btn:active{
+
+    transform:
+        scale(.96);
+}
+
+
+/* =========================
+   TRANSITION FLASH
+========================= */
+
+.flash{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:15;
+
+    background:
+        radial-gradient(
+            circle,
+            white 0%,
+            rgba(255,150,190,.8) 15%,
+            transparent 60%
+        );
+
+    opacity:0;
+
+    pointer-events:none;
+}
+
+.flash.active{
+
+    animation:
+        flash .8s ease;
+}
+
+@keyframes flash{
+
+    0%{
+        opacity:0;
+    }
+
+    30%{
+        opacity:.8;
+    }
+
+    100%{
+        opacity:0;
+    }
 }
 
 
@@ -548,9 +595,10 @@ body{
     padding:20px;
 
     background:
-        rgba(5,1,7,.86);
+        rgba(5,1,7,.88);
 
-    backdrop-filter:blur(15px);
+    backdrop-filter:
+        blur(18px);
 }
 
 
@@ -562,50 +610,58 @@ body{
 
     position:relative;
 
-    width:min(680px,95vw);
+    width:
+        min(690px,95vw);
 
-    max-height:85vh;
+    max-height:86vh;
 
     overflow-y:auto;
 
-    padding:45px 38px;
+    padding:
+        48px 40px;
 
-    border-radius:24px;
+    border-radius:25px;
 
     background:
         linear-gradient(
             145deg,
             #fffafd,
-            #ffdce9
+            #ffe0eb
         );
 
     color:#421526;
 
     box-shadow:
-        0 0 60px
-        rgba(255,70,130,.5),
+        0 0 80px
+        rgba(255,70,140,.55),
 
-        inset 0 0 30px
+        inset 0 0 35px
         rgba(255,255,255,.8);
 
     transform:
-        scale(.4)
-        rotate(-5deg);
+        scale(.3)
+        rotate(-6deg);
 
     animation:
-        openLetter .8s
+        letterOpen 1s
         cubic-bezier(.17,.89,.32,1.28)
         forwards;
 }
 
-@keyframes openLetter{
+@keyframes letterOpen{
 
     0%{
         opacity:0;
 
         transform:
-            scale(.4)
-            rotate(-5deg);
+            scale(.3)
+            rotate(-6deg);
+    }
+
+    70%{
+        transform:
+            scale(1.04)
+            rotate(1deg);
     }
 
     100%{
@@ -617,27 +673,56 @@ body{
     }
 }
 
+
+/* paper decoration */
+
 .letter::before{
 
     content:"♥";
 
     position:absolute;
 
-    top:12px;
-    right:20px;
+    top:15px;
+    right:22px;
 
-    font-size:32px;
+    font-size:34px;
 
     color:#ff548f;
 }
+
+.letter::after{
+
+    content:"A little something from Gudu";
+
+    position:absolute;
+
+    bottom:12px;
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    font-family:Arial,sans-serif;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+
+    color:#c27b93;
+}
+
+
+/* =========================
+   LETTER CONTENT
+========================= */
 
 .letter h1{
 
     text-align:center;
 
-    color:#9e294f;
+    color:#97294e;
 
-    font-size:34px;
+    font-size:35px;
 
     margin-bottom:10px;
 }
@@ -652,7 +737,7 @@ body{
 
     font-weight:normal;
 
-    margin-bottom:28px;
+    margin-bottom:30px;
 }
 
 .letter p{
@@ -661,40 +746,51 @@ body{
 
     font-size:16px;
 
-    line-height:1.8;
+    line-height:1.85;
 
-    margin-bottom:17px;
+    margin-bottom:18px;
 }
 
 .highlight{
 
     text-align:center;
 
-    font-size:23px;
+    font-size:24px;
 
     color:#a52c55;
 
-    margin:28px 0;
+    margin:
+        28px 0;
+
+    text-shadow:
+        0 0 12px rgba(190,50,100,.2);
 }
 
 .signature{
 
     text-align:right;
 
-    font-size:21px;
+    font-size:22px;
 
     color:#9e294f;
 
-    margin-top:28px;
+    margin-top:30px;
 }
+
+
+/* =========================
+   CLOSE BUTTON
+========================= */
 
 .close{
 
     display:block;
 
-    margin:25px auto 0;
+    margin:
+        27px auto 0;
 
-    padding:12px 27px;
+    padding:
+        12px 28px;
 
     border:none;
 
@@ -711,11 +807,11 @@ body{
 
 .close:hover{
 
-    transform:scale(1.05);
+    transform:
+        scale(1.06);
 
     box-shadow:
-        0 0 20px
-        rgba(169,47,87,.5);
+        0 0 25px rgba(169,47,87,.5);
 }
 
 
@@ -723,30 +819,34 @@ body{
    MOBILE
 ========================= */
 
-@media(max-width:650px){
+@media(max-width:600px){
 
     .title{
-        font-size:39px;
+        font-size:40px;
     }
 
     .subtitle{
         font-size:14px;
         max-width:320px;
-        margin-bottom:20px;
     }
 
     .scene{
 
-        transform:scale(.60);
+        transform:
+            scale(.72);
 
         margin:
-            -35px 0;
+            -25px 0;
+    }
+
+    .heart{
+        font-size:135px;
     }
 
     .letter{
 
         padding:
-            35px 22px;
+            38px 23px;
     }
 
     .letter h1{
@@ -759,7 +859,9 @@ body{
 
     .letter p{
         font-size:14.5px;
+        line-height:1.75;
     }
+
 }
 
 </style>
@@ -769,85 +871,106 @@ body{
 <body>
 
 
-<!-- STARS -->
+<!-- Ambient background -->
 
-<div
-    class="stars"
-    id="stars">
-</div>
+<div class="ambient"></div>
+
+<div class="stars" id="stars"></div>
 
 
-<!-- MAIN -->
+<!-- Main -->
 
 <main id="main">
-
 
     <h1 class="title">
         For Babuni ❤️
     </h1>
 
-
     <p class="subtitle">
 
-        Some things are easier to say
-        from the heart...
+        I made a little something
+        I wanted you to see...
 
         <br>
 
-        So I made this little surprise
-        just for you. ✨
+        Some words are easier to send
+        straight from the heart. ✨
 
     </p>
 
 
-    <!-- MAGIC SCENE -->
+    <!-- HEART SCENE -->
 
     <div class="scene">
 
 
-        <!-- PORTAL -->
+        <div class="orbit"></div>
 
-        <div class="portal">
+        <div class="orbit two"></div>
 
-            <div class="portal-heart">
-                ♥
-            </div>
+        <div class="orbit three"></div>
 
+
+        <div class="heart" id="heart">
+            ♥
         </div>
 
 
-        <!-- ARROW -->
+        <!-- Sparks -->
 
         <div
-            class="arrow"
-            id="arrow">
+            class="spark"
+            style="left:15%;top:30%;animation-delay:.2s">
+        </div>
+
+        <div
+            class="spark"
+            style="left:80%;top:20%;animation-delay:1s">
+        </div>
+
+        <div
+            class="spark"
+            style="left:83%;top:72%;animation-delay:1.5s">
+        </div>
+
+        <div
+            class="spark"
+            style="left:20%;top:75%;animation-delay:2s">
+        </div>
+
+        <div
+            class="spark"
+            style="left:50%;top:8%;animation-delay:.7s">
         </div>
 
 
     </div>
 
 
-    <!-- BUTTON -->
-
     <button
-        class="shoot-btn"
-        id="shootButton"
-        onclick="shootArrow()">
+        class="btn"
+        id="openButton"
+        onclick="openLetter()">
 
-        ✨ Send it to my heart
+        💌 Open my message
 
     </button>
 
-
 </main>
 
+
+<!-- Flash -->
+
+<div
+    class="flash"
+    id="flash">
+</div>
 
 
 <!-- LETTER -->
 
 <div
     id="letterScreen">
-
 
     <div class="letter">
 
@@ -874,8 +997,8 @@ body{
         <p>
 
             I accidentally removed your name
-            from my bio because I thought I
-            was making things better.
+            from my bio because I thought I was
+            making things better.
 
             But instead, I ended up hurting you,
             and that's something I genuinely
@@ -886,9 +1009,9 @@ body{
 
         <p>
 
-            The truth is, I wasn't in the best
-            mood and I was feeling sad, so I
-            wasn't thinking properly.
+            The truth is, I was feeling sad and
+            wasn't really thinking properly at
+            that moment.
 
             It wasn't because you weren't
             important to me.
@@ -898,19 +1021,21 @@ body{
 
         <p>
 
-            You actually mean a lot to me,
-            and that's why I hate knowing
-            that my silly mistake made you
-            feel bad.
+            You actually mean a lot to me.
+
+            That's why knowing that my mistake
+            hurt you makes me feel genuinely bad.
 
         </p>
 
 
         <p>
 
-            I don't want to make excuses.
-            I just want to be honest and say
-            that I'm genuinely sorry.
+            I don't want to make excuses for
+            what I did.
+
+            I just want to be honest with you
+            and say that I'm truly sorry.
 
         </p>
 
@@ -921,9 +1046,8 @@ body{
             was never meant to make you feel
             like you didn't matter.
 
-            It was just me making a stupid
-            decision while I wasn't feeling
-            like myself.
+            It was just a stupid decision I made
+            while I wasn't feeling like myself.
 
         </p>
 
@@ -937,20 +1061,32 @@ body{
 
         <p>
 
-            I don't expect you to forgive me
-            instantly.
+            I don't expect you to instantly
+            forget everything or forgive me
+            right away.
 
             I just wanted you to know that
-            I really do regret hurting you.
+            I genuinely regret hurting you.
 
         </p>
 
 
         <p>
 
-            So here's my little apology,
-            wrapped in a tiny website
-            and sent straight from my heart. 💌
+            You matter to me, and I hope
+            someday this silly mistake will
+            just become one of those things
+            we look back at and laugh about.
+
+        </p>
+
+
+        <p>
+
+            Until then, here's my little
+            apology — wrapped in a tiny
+            website and sent straight from
+            my heart. 💌
 
         </p>
 
@@ -976,9 +1112,7 @@ body{
 </div>
 
 
-
 <script>
-
 
 /* =========================
    STARS
@@ -987,8 +1121,7 @@ body{
 const stars =
     document.getElementById("stars");
 
-
-for(let i=0;i<110;i++){
+for(let i=0;i<120;i++){
 
     const star =
         document.createElement("div");
@@ -1002,18 +1135,20 @@ for(let i=0;i<110;i++){
         Math.random()*100+"%";
 
     star.style.animationDelay =
-        Math.random()*3+"s";
+        Math.random()*4+"s";
+
+    star.style.animationDuration =
+        (1.5+Math.random()*3)+"s";
 
     stars.appendChild(star);
 }
-
 
 
 /* =========================
    FLOATING HEARTS
 ========================= */
 
-function floatingHeart(){
+function createHeart(){
 
     const heart =
         document.createElement("div");
@@ -1044,130 +1179,64 @@ function floatingHeart(){
 }
 
 setInterval(
-    floatingHeart,
-    1100
+    createHeart,
+    1000
 );
 
 
-
 /* =========================
-   PARTICLES
+   OPEN LETTER
 ========================= */
 
-function createParticles(){
+function openLetter(){
 
-    const scene =
-        document.querySelector(".scene");
+    const main =
+        document.getElementById("main");
 
-    const portal =
-        document.querySelector(".portal");
+    const flash =
+        document.getElementById("flash");
 
-    const rect =
-        portal.getBoundingClientRect();
-
-    const centerX =
-        rect.left +
-        rect.width/2;
-
-    const centerY =
-        rect.top +
-        rect.height/2;
-
-
-    for(let i=0;i<28;i++){
-
-        const particle =
-            document.createElement("div");
-
-        particle.className=
-            "particle";
-
-
-        particle.style.position=
-            "fixed";
-
-        particle.style.left=
-            centerX+"px";
-
-        particle.style.top=
-            centerY+"px";
-
-
-        const angle =
-            Math.random() *
-            Math.PI * 2;
-
-
-        const distance =
-            50 +
-            Math.random()*130;
-
-
-        particle.style.setProperty(
-            "--x",
-            Math.cos(angle)*distance+"px"
-        );
-
-
-        particle.style.setProperty(
-            "--y",
-            Math.sin(angle)*distance+"px"
-        );
-
-
-        document.body.appendChild(
-            particle
-        );
-
-
-        setTimeout(
-            ()=>particle.remove(),
-            900
-        );
-    }
-}
-
-
-
-/* =========================
-   SHOOT
-========================= */
-
-function shootArrow(){
-
-    const arrow =
-        document.getElementById("arrow");
+    const heart =
+        document.getElementById("heart");
 
     const button =
-        document.getElementById("shootButton");
+        document.getElementById("openButton");
 
 
     button.disabled=true;
 
     button.innerHTML=
-        "💌 Sending your apology...";
+        "💗 Opening your message...";
 
 
-    arrow.classList.remove(
-        "shoot"
-    );
+    /* Heart grows */
 
-    void arrow.offsetWidth;
+    heart.style.animation=
+        "none";
 
-    arrow.classList.add(
-        "shoot"
-    );
+    heart.style.transform=
+        "translate(-50%,-50%) scale(1.45)";
 
 
-    /* particles */
+    /* Flash */
 
-    setTimeout(
-        createParticles,
-        900
-    );
+    setTimeout(()=>{
+
+        flash.classList.add("active");
+
+    },300);
 
 
-    /* open letter */
+    /* Hide main */
+
+    setTimeout(()=>{
+
+        main.classList.add("hide");
+
+    },450);
+
+
+    /* Show letter */
 
     setTimeout(()=>{
 
@@ -1175,20 +1244,13 @@ function shootArrow(){
             "letterScreen"
         ).style.display="flex";
 
-
-        button.disabled=false;
-
-        button.innerHTML=
-            "✨ Send it to my heart";
-
-    },1250);
+    },800);
 
 }
 
 
-
 /* =========================
-   CLOSE
+   CLOSE LETTER
 ========================= */
 
 function closeLetter(){
@@ -1198,9 +1260,37 @@ function closeLetter(){
     ).style.display="none";
 
 
+    const main =
+        document.getElementById("main");
+
+    const heart =
+        document.getElementById("heart");
+
+    const flash =
+        document.getElementById("flash");
+
+
+    main.classList.remove("hide");
+
+    flash.classList.remove("active");
+
+
+    heart.style.animation=
+        "heartBeat 1.5s infinite";
+
+    heart.style.transform=
+        "translate(-50%,-50%)";
+
+
     document.getElementById(
-        "arrow"
-    ).classList.remove("shoot");
+        "openButton"
+    ).disabled=false;
+
+
+    document.getElementById(
+        "openButton"
+    ).innerHTML=
+        "💌 Open my message";
 
 }
 
